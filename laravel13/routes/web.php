@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::get('/index', function () {
     return view('worker.index');
-})->name('index');
+})->name('index')->middleware('auth');
 
 Route::get('/register', [AuthController::class, 'showRegister'])->name('show.register');
 Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login');
