@@ -19,7 +19,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function Register(Request $request)
+    public function register(Request $request)
     {
         $validated = $request->validate([
             'firstName' => 'required|string|max:255',
@@ -33,5 +33,13 @@ class AuthController extends Controller
         Auth::login($user);
     }
 
-    public function Login() {}
+    public function login() {}
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('show.login');
+    }
 }
