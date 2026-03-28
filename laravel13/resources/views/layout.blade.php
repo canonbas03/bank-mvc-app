@@ -17,7 +17,18 @@
 </head>
 
 <body>
+  <header>
+    <nav>
+      <h1>Dashboard</h1>
 
+
+      <a href="{{ route('show.login') }}" class="btn btn-danger">Login</a>
+      <a href="{{ route('show.login') }}" class="btn">Register</a>
+
+
+
+    </nav>
+  </header>
   <div class="container">
 
     @yield('content')

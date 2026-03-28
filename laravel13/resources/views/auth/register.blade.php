@@ -1,3 +1,6 @@
+    @extends('layout')
+
+    @section('content')
     <form action="{{ route('register') }}" method="POST">
         @csrf
 
@@ -48,3 +51,4 @@
         @endif
 
     </form>
+    @endsection
