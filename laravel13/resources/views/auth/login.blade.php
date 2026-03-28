@@ -1,4 +1,4 @@
-    <form method="POST">
+    <form action="{{ route('login') }}" method="POST">
         @csrf
 
         <h2>Log In to Your Account</h2>

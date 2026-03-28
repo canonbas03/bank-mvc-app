@@ -3,11 +3,18 @@
 
         <h2>Register for an Account</h2>
 
-        <label for="name">Name:</label>
+        <label for="firstName">First Name:</label>
         <input
             type="text"
-            name="name"
-            value="{{ old('name') }}"
+            name="firstName"
+            value="{{ old('firstName') }}"
+            required>
+
+        <label for="lastName">Last Name:</label>
+        <input
+            type="text"
+            name="lastName"
+            value="{{ old('lastName') }}"
             required>
 
         <label for="email">Email:</label>
