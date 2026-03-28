@@ -33,7 +33,24 @@ class AuthController extends Controller
         Auth::login($user);
     }
 
-    public function login() {}
+    public function login(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string'
+        ]);
+
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('index');
+        }
+
+        throw ValidationException::withMessages([
+            'credentials' => 'Sorry, incorrect credentials.'
+        ]);
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
