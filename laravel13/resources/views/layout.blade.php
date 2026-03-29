@@ -24,7 +24,7 @@
 
       @guest
       <a href="{{ route('show.login') }}" class="btn">Login</a>
-      <a href="{{ route('show.register') }}" class="btn">Register</a>
+
       @endguest
 
       @auth

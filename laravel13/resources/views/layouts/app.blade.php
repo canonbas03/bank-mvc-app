@@ -23,7 +23,7 @@
 
             @guest
             <a href="" class="btn">Login</a>
-            <a href="" class="btn">Register</a>
+            <a href="" class="btn">Register1</a>
             @endguest
 
             @auth
