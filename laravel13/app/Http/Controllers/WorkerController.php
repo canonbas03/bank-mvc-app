@@ -23,7 +23,7 @@ class WorkerController extends Controller
      */
     public function create()
     {
-        //
+        return view("worker.register");
     }
 
     /**
@@ -31,7 +31,28 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'salary' => 'required|numeric'
+        ]);
+
+        $user = User::create([
+            'firstName' => $validated['firstName'],
+            'lastName' => $validated['lastName'],
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+            'role' => 'worker'
+        ]);
+
+        Worker::create([
+            'user_id' => $user->id,
+            'salary' => $validated['salary']
+        ]);
+
+        return redirect()->route('workers.index');
     }
 
     /**

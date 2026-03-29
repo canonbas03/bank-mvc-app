@@ -10,62 +10,41 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
+    // public function showRegister()
+    // {
+    //     return view('auth.register');
+    // }
 
-    public function showWorkerRegister()
-    {
-        return view('worker.register');
-    }
+    // public function showWorkerRegister()
+    // {
+    //     return view('worker.register');
+    // }
 
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    public function register(Request $request)
-    {
-        $validated = $request->validate([
-            'firstName' => 'required|string|max:255',
-            'lastName' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string'
-        ]);
+    // public function register(Request $request)
+    // {
+    //     $validated = $request->validate([
+    //         'firstName' => 'required|string|max:255',
+    //         'lastName' => 'required|string|max:255',
+    //         'email' => 'required|email|unique:users',
+    //         'password' => 'required|string|min:8|confirmed',
+    //         'role' => 'required|string'
+    //     ]);
 
-        $user = User::create($validated);
+    //     $user = User::create($validated);
 
-        return view('auth.register');
-        //Auth::login($user);
-    }
+    //     return view('auth.register');
+    //     //Auth::login($user);
+    // }
 
-    public function registerWorker(Request $request)
-    {
-        $validated = $request->validate([
-            'firstName' => 'required|string|max:255',
-            'lastName' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'salary' => 'required|numeric'
-        ]);
-
-        $user = User::create([
-            'firstName' => $validated['firstName'],
-            'lastName' => $validated['lastName'],
-            'email' => $validated['email'],
-            'password' => $validated['password'],
-            'role' => 'worker'
-        ]);
-
-        Worker::create([
-            'user_id' => $user->id,
-            'salary' => $validated['salary']
-        ]);
-
-        return redirect()->route('workers.index');
-    }
+    // public function registerWorker(Request $request)
+    // {
+    //    
+    // }
 
     public function login(Request $request)
     {

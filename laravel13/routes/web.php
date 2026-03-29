@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WorkerController;
+use App\Models\Worker;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,8 +21,8 @@ Route::middleware('guest')->controller(AuthController::class)->group(function ()
 Route::get('/register', [AuthController::class, 'showRegister'])->name('show.register');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/register/worker', [AuthController::class, 'showWorkerRegister'])->name('show.register.worker');
-Route::post('/register/worker', [AuthController::class, 'registerWorker'])->name('register.worker');
+Route::get('/register/worker', [WorkerController::class, 'create'])->name('show.register.worker');
+Route::post('/register/worker', [WorkerController::class, 'store'])->name('register.worker');
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
