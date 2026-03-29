@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WorkerController;
-use App\Models\Worker;
+use App\Http\Controllers\ClientController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +24,10 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/register/worker', [WorkerController::class, 'create'])->name('show.register.worker');
 Route::post('/register/worker', [WorkerController::class, 'store'])->name('register.worker');
+
+Route::get('/register/client', [ClientController::class, 'create'])->name('show.register.client');
+Route::post('/register/client', [ClientController::class, 'store'])->name('register.client');
+
 
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

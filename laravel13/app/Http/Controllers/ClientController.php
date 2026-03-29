@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -11,7 +13,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients =  Client::with('user')->get();
+
+        return view("client.index", compact('clients'));
     }
 
     /**
@@ -19,7 +23,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view("client.register");
     }
 
     /**
@@ -27,7 +31,30 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'clientEgn' => 'required|numeric',
+            'bankAccountNumber' => 'required',
+        ]);
+
+        $user = User::create([
+            'firstName' => $validated['firstName'],
+            'lastName' => $validated['lastName'],
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+            'role' => 'client'
+        ]);
+
+        Client::create([
+            'user_id' => $user->id,
+            'clientEgn' => $validated['clientEgn'],
+            'bankAccountNumber' => $validated['bankAccountNumber']
+        ]);
+
+        return redirect()->route('clients.index');
     }
 
     /**

@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    protected $fillable = ['clientEgn', 'firstName', 'lastName', 'bankAccountNumber'];
+    protected $fillable = ['user_id', 'clientEgn', 'bankAccountNumber'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
