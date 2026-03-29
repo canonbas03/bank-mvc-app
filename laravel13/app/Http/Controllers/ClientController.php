@@ -18,6 +18,12 @@ class ClientController extends Controller
         return view("client.index", compact('clients'));
     }
 
+    public function dashboard()
+    {
+
+        return view("client.dashboard");
+    }
+
     /**
      * Show the form for creating a new resource.
      */
