@@ -56,7 +56,13 @@ class AuthController extends Controller
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
 
-            return redirect()->route('index');
+            $role = Auth::user()->role;
+
+            return match ($role) {
+                'admin' => redirect()->route('workers.index'),
+                'worker' => redirect()->route('clients.index'),
+                'client' => redirect()->route('client.dashboard'),
+            };
         }
 
         throw ValidationException::withMessages([

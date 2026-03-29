@@ -15,7 +15,7 @@
     </div>
     @endif
 
-    <!-- <header>
+    <header>
         <nav>
             <h1>
                 Ninja Network
@@ -37,7 +37,7 @@
             </form>
             @endauth
         </nav>
-    </header> -->
+    </header>
 
     <main class="container">
         @yield('content')
