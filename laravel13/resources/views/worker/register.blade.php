@@ -1,7 +1,7 @@
     @extends('layout')
 
     @section('content')
-    <form action="{{ route('register') }}" method="POST">
+    <form action="{{ route('register.worker') }}" method="POST">
         @csrf
 
         <h2>Register for an Account</h2>
@@ -39,11 +39,10 @@
             name="password_confirmation"
             required>
 
-        <label for="role">Role:</label>
+        <label for="salary">Salary:</label>
         <input
             type="text"
-            name="role"
-            value="{{ old('email') }}"
+            name="salary"
             required>
 
         <button type="submit" class="btn mt-4">Register</button>
