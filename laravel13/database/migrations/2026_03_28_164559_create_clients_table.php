@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->integer("clientEgn");
+            $table->string("clientEgn");
             $table->string("bankAccountNumber");
             $table->timestamps();
         });

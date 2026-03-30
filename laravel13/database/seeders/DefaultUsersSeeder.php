@@ -1,0 +1,59 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Worker;
+use App\Models\Client;
+use Illuminate\Support\Facades\Hash;
+
+class DefaultUsersSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        // ADMIN
+        User::create([
+            'firstName' => 'Admin',
+            'lastName'  => 'User',
+            'email'     => 'admin@test.com',
+            'password'  => Hash::make('12345678'),
+            'role'      => 'admin'
+        ]);
+
+        // WORKER USER
+        $workerUser = User::create([
+            'firstName' => 'Worker',
+            'lastName'  => 'User',
+            'email'     => 'worker@test.com',
+            'password'  => Hash::make('12345678'),
+            'role'      => 'worker'
+        ]);
+
+        // WORKER PROFILE (salary in workers table)
+        Worker::create([
+            'user_id' => $workerUser->id,
+            'salary'  => 1500
+        ]);
+
+        // CLIENT
+        $clientUser = User::create([
+            'firstName' => 'Client',
+            'lastName'  => 'User',
+            'email'     => 'client@test.com',
+            'password'  => Hash::make('12345678'),
+            'role'      => 'client'
+        ]);
+
+        // CLIENT PROFILE (EGN and bank account)
+        Client::create([
+            'user_id' => $clientUser->id,
+            'clientEgn' => '080808',
+            'bankAccountNumber' => 'BG12389656',
+        ]);
+    }
+}
