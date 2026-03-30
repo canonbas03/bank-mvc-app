@@ -47,7 +47,7 @@ Route::resource('clients', 'App\Http\Controllers\ClientController');
 Route::resource('students', 'App\Http\Controllers\StudentController');
 //Route::resource('workers', 'App\Http\Controllers\WorkerController');
 Route::resource('workers', 'App\Http\Controllers\WorkerController')->middleware(['auth', 'role:worker,admin']);
-Route::resource('admin', 'App\Http\Controllers\AdminController')->middleware(['auth', 'role:worker,admin']);
+Route::resource('admin', 'App\Http\Controllers\AdminController')->middleware(['auth', 'role:admin']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
