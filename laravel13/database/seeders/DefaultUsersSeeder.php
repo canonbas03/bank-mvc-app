@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BankAccount;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -45,15 +46,23 @@ class DefaultUsersSeeder extends Seeder
             'firstName' => 'Client',
             'lastName'  => 'User',
             'email'     => 'client@test.com',
-            'password'  => Hash::make('12345678'),
+            'password'  => Hash::make('1234567812'),
             'role'      => 'client'
         ]);
 
         // CLIENT PROFILE (EGN and bank account)
-        Client::create([
+        $client = Client::create([
             'user_id' => $clientUser->id,
             'clientEgn' => '080808',
             'bankAccountNumber' => 'BG12389656',
+        ]);
+
+        // Client bank account
+        BankAccount::create([
+            'client_id' => $client->id,
+            'bankAccountNumber' => "BG{$client->client_Egn}",
+            'cardNumber' => '1111222233334444',
+            'balance' => 500
         ]);
     }
 }
