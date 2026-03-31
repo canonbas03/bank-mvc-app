@@ -54,7 +54,6 @@ class DefaultUsersSeeder extends Seeder
         $client = Client::create([
             'user_id' => $clientUser->id,
             'clientEgn' => '080808',
-            'bankAccountNumber' => 'BG12389656',
         ]);
 
         // Client bank account
