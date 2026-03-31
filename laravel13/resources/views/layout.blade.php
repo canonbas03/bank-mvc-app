@@ -10,7 +10,7 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Laravel 13 CRUD Tutorial</title>
+  <title>BANK MVC</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 

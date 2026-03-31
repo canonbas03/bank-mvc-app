@@ -3,6 +3,12 @@
 @section('content')
 <h2>Create Bank Account for Client</h2>
 
+@if(session('success'))
+<div class="alert alert-success mt-4">
+    {{ session('success') }}
+</div>
+@endif
+
 <form action="{{ route('bankaccounts.store') }}" method="POST">
     @csrf
 
