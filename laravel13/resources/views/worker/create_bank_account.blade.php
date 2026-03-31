@@ -13,16 +13,16 @@
     @csrf
 
     <label for="client_egn">Client EGN:</label>
-    <input type="text" name="client_egn" required>
+    <input type="text" name="client_egn" value="{{ old('client_egn') }}" required>
 
     <label for="bankAccountNumber">Bank Account Number:</label>
-    <input type="text" name="bankAccountNumber" required>
+    <input type="text" name="bankAccountNumber" value="{{ old('bankAccountNumber') }}" required>
 
     <label for="cardNumber">Card Number:</label>
-    <input type="text" name="cardNumber" required>
+    <input type="text" name="cardNumber" value="{{ old('cardNumber') }}" required>
 
     <label for="balance">Initial Balance:</label>
-    <input type="number" name="balance" step="0.01" required>
+    <input type="number" name="balance" value="{{ old('balance') }}" step="0.01" required>
 
     <button type="submit" class="btn mt-4">Create Account</button>
 
