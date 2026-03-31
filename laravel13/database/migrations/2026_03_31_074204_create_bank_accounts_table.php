@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('client_id')->constrained()->onDelete('cascade');
+            $table->string("bankAccountNumber");
+            $table->string("cardNumber");
+            $table->decimal('balance', 10, 2);
             $table->timestamps();
         });
     }
