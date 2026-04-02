@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BankAccountController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\BankTransferController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -65,3 +66,5 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/dashboard', [ClientController::class, 'dashboard'])
         ->name('clients.dashboard');
 });
+
+Route::get('/transfer', [BankTransferController::class, 'create'])->name('transfer.create');
