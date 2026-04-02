@@ -20,40 +20,40 @@
             </ul>
         </div><br />
         @endif
-        <form action="{{ route('update.client') }}" method="POST">
+        <form action="{{ route('clients.update', $client->id) }}" method="POST">
             @csrf
-
-            <h2>Register a new Client</h2>
+            @method('PATCH')
+            <h2>Edit Client</h2>
 
             <label for="firstName">First Name:</label>
             <input
                 type="text"
                 name="firstName"
-                value="{{ $client->firstName}}"
+                value="{{ $client->user->firstName}}"
                 required>
 
             <label for="lastName">Last Name:</label>
             <input
                 type="text"
                 name="lastName"
-                value="{{ $client->lastName}}"
+                value="{{ $client->user->lastName}}"
                 required>
 
             <label for="email">Email:</label>
             <input
                 type="email"
                 name="email"
-                value="{{ $client->email}}"
+                value="{{ $client->user->email}}"
                 required>
 
             <label for="clientEgn">EGN:</label>
             <input
                 type="text"
                 name="clientEgn"
-                value="{{ $client->firstName}}"
+                value="{{ $client->clientEgn}}"
                 required>
 
-            <button type="submit" class="btn mt-4">Register</button>
+            <button type="submit" class="btn mt-4">Edit</button>
 
             <!-- validation errors -->
             @if ($errors->any())

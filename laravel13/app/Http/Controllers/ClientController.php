@@ -84,7 +84,9 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        return view("clients.edit", compact("client"));
     }
 
     /**
@@ -92,7 +94,26 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        $validated = $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $client->user->id,
+            'clientEgn' => 'required|numeric',
+        ]);
+
+        $client->user->update([
+            'firstName' => $validated['firstName'],
+            'lastName' => $validated['lastName'],
+            'email' => $validated['email'],
+        ]);
+
+        $client->update([
+            'clientEgn' => $validated['clientEgn'],
+        ]);
+
+        return redirect()->route('clients.index')->with('success', 'Client data is successfully updated');
     }
 
     /**
