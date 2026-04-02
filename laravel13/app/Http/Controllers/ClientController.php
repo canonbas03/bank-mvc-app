@@ -121,6 +121,10 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        $client->user->delete();
+
+        return redirect()->route('clients.index')->with('success', 'Client data is successfully deleted');
     }
 }

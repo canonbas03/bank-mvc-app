@@ -27,10 +27,10 @@
             <td><a href="{{ route('clients.show', $client->id)}}" class="btn btn-primary">Show</a></td>
             <td><a href="{{ route('clients.edit', $client->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
-                <form action="{}" method="post">
+                <form action="{{route('clients.destroy', $client->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this client: {{$client->user->firstName}} {{$client->user->lastName}}?')">Delete</button>
                 </form>
             </td>
         </tr>
