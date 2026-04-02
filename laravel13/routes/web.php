@@ -15,9 +15,9 @@ Route::get('/index', function () {
     return view('index');
 })->name('index')->middleware('auth');
 
-Route::get('/clients/dashboard', function () {
-    return view('client.dashboard');
-})->name('clients.dashboard')->middleware('auth');
+// Route::get('/clients/dashboard', function () {
+//     return view('client.dashboard');
+// })->name('clients.dashboard')->middleware('auth');
 
 Route::middleware('guest')->controller(AuthController::class)->group(function () {
 
@@ -59,4 +59,9 @@ Route::middleware(['auth', 'role:worker,admin'])->group(function () {
     Route::post('/bankaccounts', [BankAccountController::class, 'store'])->name('bankaccounts.store');
 
     Route::get('/clients/{id}', [ClientController::class, 'show']);
+});
+
+Route::middleware(['auth', 'role:client'])->group(function () {
+    Route::get('/dashboard', [ClientController::class, 'dashboard'])
+        ->name('clients.dashboard');
 });

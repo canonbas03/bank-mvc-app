@@ -2,5 +2,5 @@
 @extends('layout')
 
 @section('content')
-
+<p>{{$client->firstName}}</p>
 @endsection

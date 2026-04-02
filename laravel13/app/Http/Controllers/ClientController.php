@@ -21,8 +21,9 @@ class ClientController extends Controller
 
     public function dashboard()
     {
+        $client = auth()->user()->client;
 
-        return view("client.dashboard");
+        return view('clients.dashboard', compact('client'));
     }
 
     /**
