@@ -57,4 +57,6 @@ Route::resource('admin', 'App\Http\Controllers\AdminController')->middleware(['a
 Route::middleware(['auth', 'role:worker,admin'])->group(function () {
     Route::get('/bankaccounts', [BankAccountController::class, 'create'])->name('bankaccounts.create');
     Route::post('/bankaccounts', [BankAccountController::class, 'store'])->name('bankaccounts.store');
+
+    Route::get('/clients/{id}', [ClientController::class, 'show']);
 });

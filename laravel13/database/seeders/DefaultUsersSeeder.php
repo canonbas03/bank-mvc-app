@@ -46,7 +46,7 @@ class DefaultUsersSeeder extends Seeder
             'firstName' => 'Client',
             'lastName'  => 'User',
             'email'     => 'client@test.com',
-            'password'  => Hash::make('1234567812'),
+            'password'  => Hash::make('12345678'),
             'role'      => 'client'
         ]);
 
