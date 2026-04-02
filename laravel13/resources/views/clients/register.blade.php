@@ -1,7 +1,7 @@
     @extends('layout')
 
     @section('content')
-    <form action="{{ route('register.client') }}" method="POST">
+    <form action="{{ route('clients.store') }}" method="POST">
         @csrf
 
         <h2>Register a new Client</h2>
@@ -44,13 +44,6 @@
             type="text"
             name="clientEgn"
             required>
-
-        <label for="bankAccountNumber">IBAN:</label>
-        <input
-            type="text"
-            name="bankAccountNumber"
-            required>
-
 
         <button type="submit" class="btn mt-4">Register</button>
 

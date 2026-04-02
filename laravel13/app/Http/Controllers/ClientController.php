@@ -15,7 +15,7 @@ class ClientController extends Controller
     {
         $clients =  Client::with('user')->get();
 
-        return view("client.index", compact('clients'));
+        return view("clients.index", compact('clients'));
     }
 
     public function dashboard()
@@ -29,7 +29,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view("client.register");
+        return view("clients.register");
     }
 
     /**
@@ -43,7 +43,6 @@ class ClientController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'clientEgn' => 'required|numeric',
-            'bankAccountNumber' => 'required',
         ]);
 
         $user = User::create([
@@ -57,10 +56,10 @@ class ClientController extends Controller
         Client::create([
             'user_id' => $user->id,
             'clientEgn' => $validated['clientEgn'],
-            'bankAccountNumber' => $validated['bankAccountNumber']
+            'bankAccountNumber' => "BG{$validated['clientEgn']}"
         ]);
 
-        return redirect()->route('client.index');
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -70,7 +69,7 @@ class ClientController extends Controller
     {
         $client = Client::findOrFail($id);
 
-        return view('client.show', compact('client'));
+        return view('clients.show', compact('client'));
     }
 
     /**
