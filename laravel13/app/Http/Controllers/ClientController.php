@@ -60,7 +60,7 @@ class ClientController extends Controller
             'bankAccountNumber' => $validated['bankAccountNumber']
         ]);
 
-        return redirect()->route('clients.index');
+        return redirect()->route('client.index');
     }
 
     /**
@@ -68,7 +68,9 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+
+        return view('client.show', compact('client'));
     }
 
     /**
