@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BankAccount;
 use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,10 +54,16 @@ class ClientController extends Controller
             'role' => 'client'
         ]);
 
-        Client::create([
+        $client = Client::create([
             'user_id' => $user->id,
             'clientEgn' => $validated['clientEgn'],
-            'bankAccountNumber' => "BG{$validated['clientEgn']}"
+        ]);
+
+        BankAccount::create([
+            'client_id' => $client->id,
+            'bankAccountNumber' => "BG{$validated['clientEgn']}",
+            'cardNumber' => $validated['clientEgn'],
+            'balance' => 0,
         ]);
 
         return redirect()->route('clients.index');

@@ -24,7 +24,6 @@
             <td>{{$client->user->email}}</td>
             <td>{{$client->user->role}}</td>
             <td>{{$client->clientEgn}}</td>
-            <td>{{$client->bankAccountNumber}}</td>
             <td><a href="{{ route('clients.show', $client->id)}}" class="btn btn-primary">Show</a></td>
             <td><a href="{{ route('clients.edit', $client->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
