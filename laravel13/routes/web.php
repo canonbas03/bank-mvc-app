@@ -71,3 +71,5 @@ Route::get('/transfer', [BankTransferController::class, 'create'])->name('transf
 
 Route::get('/transfer', [BankTransferController::class, 'create'])->name('transfer.create')->middleware(['auth', 'role:client']);
 Route::post('/transfer', [BankTransferController::class, 'store'])->name('transfer.store')->middleware(['auth', 'role:client']);
+
+Route::get('/history', [BankTransferController::class, 'history'])->name('transfer.history')->middleware(['auth', 'role:client']);

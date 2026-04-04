@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\BankAccount;
+use App\Models\Transaction;
 
 class BankTransferController extends Controller
 {
@@ -46,8 +47,28 @@ class BankTransferController extends Controller
             $fromAccount->decrement('balance', $validated['amount']);
 
             $toAccount->increment('balance', $validated['amount']);
+
+            Transaction::create([
+                'from_account_id' => $fromAccount->id,
+                'to_account_id' => $toAccount->id,
+                'amount' => $validated['amount'],
+            ]);
         });
 
         return back()->with('success', 'Transfer successful!');
+    }
+
+    public function history()
+    {
+        $client = auth()->user()->client;
+
+        $accountIds = $client->bankAccounts->pluck('id');
+
+        $transactions = Transaction::whereIn('from_account_id', $accountIds)
+            ->orWhereIn('to_account_id', $accountIds)
+            ->latest()
+            ->get();
+
+        return view('transfers.history', compact('transactions'));
     }
 }

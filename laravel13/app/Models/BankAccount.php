@@ -12,4 +12,14 @@ class BankAccount extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function outgoingTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'from_account_id');
+    }
+
+    public function incomingTransactions()
+    {
+        return $this->hasMany(Transaction::class, 'to_account_id');
+    }
 }
