@@ -11,7 +11,8 @@ class BankTransferController extends Controller
 
     public function create()
     {
-        return view('transfers.create');
+        $client = auth()->user()->client;
+        return view('transfers.create', compact("client"));
     }
 
     public function store(Request $request)
