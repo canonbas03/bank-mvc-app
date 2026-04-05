@@ -27,9 +27,15 @@ class BankTransferController extends Controller
         $user = auth()->user();
         $client = $user->client;
 
-        $fromAccount = BankAccount::where('id', $validated['from_account_id'])
-            ->where('client_id', $client->id)
-            ->firstOrFail();
+        if ($user->role === 'client') {
+            $client = $user->client;
+
+            $fromAccount = BankAccount::where('id', $validated['from_account_id'])
+                ->where('client_id', $client->id)
+                ->firstOrFail();
+        } else {
+            $fromAccount = BankAccount::findOrFail($validated['from_account_id']);
+        }
 
         $toAccount = BankAccount::where('bankAccountNumber', $validated['to_account_number'])
             ->firstOrFail();
