@@ -2,6 +2,7 @@
 @section('content')
 
 <div class="container mt-5 col-md-5">
+    <a href="{{ url()->previous() }}" class="btn btn-outline-secondary mb-3"> &#8592; </a>
     <div class="card shadow-sm p-4">
         <h2 class="mb-4 text-center">Register Worker Account</h2>
 
@@ -14,6 +15,7 @@
             </ul>
         </div>
         @endif
+
 
         <form action="{{ route('register.worker') }}" method="POST">
             @csrf

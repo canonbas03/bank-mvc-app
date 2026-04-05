@@ -27,7 +27,7 @@
                 <td>{{ $worker->user->lastName }}</td>
                 <td>{{ $worker->user->email }}</td>
                 <td>{{ $worker->user->role }}</td>
-                <td>{{ $worker->salary }}</td>
+                <td>{{ $worker->salary }} &euro;</td>
                 <td>
                     <div class="d-flex justify-content-center gap-2">
                         <a href="{{ route('workers.edit', $worker->id) }}" class="btn btn-sm btn-primary">Edit</a>
