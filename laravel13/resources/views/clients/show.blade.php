@@ -32,7 +32,7 @@
         @foreach($client->bankAccounts as $account)
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <span>Account: {{ $account->bankAccountNumber }}</span>
-            <span>Balance: {{ $account->balance }}</span>
+            <span>Balance: {{ $account->balance }} &euro;</span>
         </li>
         @endforeach
     </ul>
