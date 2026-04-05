@@ -1,59 +1,87 @@
-    @extends('layouts.app')
-    @section('content')
-    <form action="{{ route('clients.store') }}" method="POST">
-        @csrf
+@extends('layouts.app')
 
-        <h2>Register a new Client</h2>
+@section('content')
 
-        <label for="firstName">First Name:</label>
-        <input
-            type="text"
-            name="firstName"
-            value="{{ old('firstName') }}"
-            required>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-        <label for="lastName">Last Name:</label>
-        <input
-            type="text"
-            name="lastName"
-            value="{{ old('lastName') }}"
-            required>
+            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary mb-3">
+                ←
+            </a>
 
-        <label for="email">Email:</label>
-        <input
-            type="email"
-            name="email"
-            value="{{ old('email') }}"
-            required>
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    Register New Client
+                </div>
 
-        <label for="password">Password:</label>
-        <input
-            type="password"
-            name="password"
-            required>
+                <div class="card-body">
 
-        <label for="password_confirmation">Password:</label>
-        <input
-            type="password"
-            name="password_confirmation"
-            required>
+                    <h4 class="mb-3">Create Client</h4>
 
-        <label for="clientEgn">EGN:</label>
-        <input
-            type="text"
-            name="clientEgn"
-            required>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
 
-        <button type="submit" class="btn mt-4">Register</button>
+                    <form action="{{ route('clients.store') }}" method="POST">
+                        @csrf
 
-        <!-- validation errors -->
-        @if ($errors->any())
-        <ul class="px-4 py-2 bg-red-100">
-            @foreach ($errors->all() as $error)
-            <li class="my-2 text-red-500">{{ $error }}</li>
-            @endforeach
-        </ul>
-        @endif
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input type="text" name="firstName"
+                                value="{{ old('firstName') }}"
+                                class="form-control" required>
+                        </div>
 
-    </form>
-    @endsection
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" name="lastName"
+                                value="{{ old('lastName') }}"
+                                class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email"
+                                value="{{ old('email') }}"
+                                class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password"
+                                class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Confirm Password</label>
+                            <input type="password" name="password_confirmation"
+                                class="form-control" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">EGN</label>
+                            <input type="text" name="clientEgn"
+                                class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">
+                            Create Client
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@endsection
