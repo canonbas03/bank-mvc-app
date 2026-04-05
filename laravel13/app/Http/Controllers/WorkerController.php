@@ -15,7 +15,7 @@ class WorkerController extends Controller
     {
         $workers = Worker::with('user')->get();
 
-        return view("worker.index", compact('workers'));
+        return view("workers.index", compact('workers'));
     }
 
     /**
@@ -23,7 +23,7 @@ class WorkerController extends Controller
      */
     public function create()
     {
-        return view("worker.register");
+        return view("workers.register");
     }
 
     /**
@@ -68,7 +68,9 @@ class WorkerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $worker = Worker::findOrFail($id);
+
+        return view("workers.edit", compact("worker"));
     }
 
     /**
@@ -76,7 +78,27 @@ class WorkerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $worker = Worker::findOrFail($id);
+
+        $validated = $request->validate([
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $worker->user->id,
+            'salary' => 'required|numeric',
+        ]);
+
+        $worker->user->update([
+            'firstName' => $validated['firstName'],
+            'lastName' => $validated['lastName'],
+            'email' => $validated['email'],
+        ]);
+
+        $worker->update([
+            'salary' => $validated['salary'],
+        ]);
+
+
+        return redirect()->route('workers.index');
     }
 
     /**

@@ -23,7 +23,7 @@
             <td>{{$worker->user->email}}</td>
             <td>{{$worker->user->role}}</td>
             <td>{{$worker->salary}}</td>
-            <td><a href="" class="btn btn-primary">Edit</a></td>
+            <td><a href="{{route('workers.edit', $worker->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
                 <form action="{}" method="post">
                     @csrf
