@@ -1,5 +1,4 @@
-@extends('layout')
-
+@extends('layouts.app')
 @section('content')
 <h2>Create Bank Account for Client</h2>
 

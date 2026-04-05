@@ -1,47 +1,42 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninja Network</title>
-
-
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BANK MVC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-    @if (session('success'))
-    <div id="flash" class="p-4 text-center bg-green-50 text-green-500 font-bold">
-        {{ session('success') }}
-    </div>
-    @endif
-
     <header>
-        <nav>
-            <h1>
-                Ninja Network
-            </h1>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+            <a class="navbar-brand" href="/">MVC Bank</a>
 
-            @guest
-            <a href="" class="btn">Login</a>
-            <a href="" class="btn">Register1</a>
-            @endguest
+            <div class="ms-auto d-flex align-items-center gap-2">
 
-            @auth
-            <span class="border-r-2 pr-5">
-                Hi there, {{ Auth::user()->name }}
-            </span>
-            <a href="">Create New Ninja</a>
-            <form action="" method="POST" class="m-0">
-                @csrf
-                <button type="submit" class="btn">Logout</button>
-            </form>
-            @endauth
+                @guest
+                <a href="{{ route('show.login') }}" class="btn btn-outline-light">Login</a>
+                @endguest
+
+                @auth
+                <span class="text-white me-3">
+                    Hi there, {{ Auth::user()->firstName }}!
+                </span>
+
+                <form action="{{ route('logout') }}" method="POST" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+                @endauth
+            </div>
         </nav>
     </header>
-
-    <main class="container">
+    <div class="container">
         @yield('content')
-    </main>
+    </div>
+
 
 </body>
 

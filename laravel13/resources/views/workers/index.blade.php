@@ -1,6 +1,5 @@
 <h1>bank-mvc-app\laravel13\resources\views\worker\index.blade.php</h1>
-@extends('layout')
-
+@extends('layouts.app')
 @section('content')
 <table class="table table-striped">
     <thead>

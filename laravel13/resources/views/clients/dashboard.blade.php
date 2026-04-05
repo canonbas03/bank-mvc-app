@@ -1,7 +1,6 @@
-<h1>Client Dashboard</h1>
-@extends('layout')
-
+@extends('layouts.app')
 @section('content')
+<h1>Client Dashboard</h1>
 <p><strong>Name:</strong> {{ $client->user->firstName }} {{ $client->user->lastName }}</p>
 <p><strong>Email:</strong> {{ $client->user->email }}</p>
 <p><strong>EGN:</strong> {{ $client->clientEgn }}</p>

@@ -9,12 +9,26 @@ use App\Http\Controllers\BankTransferController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/index', function () {
-    return view('index');
-})->name('index')->middleware('auth');
+    if (!auth()->check()) {
+        return redirect()->route('show.login');
+    }
+
+    $user = auth()->user();
+
+    if ($user->role === 'admin') {
+        return redirect()->route('admin.index');
+    }
+
+    if ($user->role === 'worker') {
+        return redirect()->route('workers.index');
+    }
+
+    if ($user->role === 'client') {
+        return redirect()->route('clients.dashboard');
+    }
+})->name('home');
+
 
 // Route::get('/clients/dashboard', function () {
 //     return view('client.dashboard');
@@ -45,7 +59,7 @@ Route::post('/register/client', [ClientController::class, 'store'])->name('regis
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-Route::resource('clients', 'App\Http\Controllers\ClientController');
+Route::resource('clients', 'App\Http\Controllers\ClientController')->middleware(['auth', 'role:worker,admin']);
 Route::resource('students', 'App\Http\Controllers\StudentController');
 //Route::resource('workers', 'App\Http\Controllers\WorkerController');
 Route::resource('workers', 'App\Http\Controllers\WorkerController')->middleware(['auth', 'role:worker,admin']);

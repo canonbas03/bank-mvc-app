@@ -1,5 +1,4 @@
-@extends('layout')
-
+@extends('layouts.app')
 @section('content')
 
 <h2>Find Client</h2>
