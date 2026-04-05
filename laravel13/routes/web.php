@@ -69,7 +69,7 @@ Route::middleware(['auth', 'role:client'])->group(function () {
 
 Route::get('/transfer', [BankTransferController::class, 'create'])->name('transfer.create');
 
-Route::get('/transfer', [BankTransferController::class, 'create'])->name('transfer.create')->middleware(['auth', 'role:client']);
-Route::post('/transfer', [BankTransferController::class, 'store'])->name('transfer.store')->middleware(['auth', 'role:client']);
+Route::get('/transfer', [BankTransferController::class, 'create'])->name('transfer.create')->middleware(['auth', 'role:client,worker,admin']);
+Route::post('/transfer', [BankTransferController::class, 'store'])->name('transfer.store')->middleware(['auth', 'role:client,worker,admin']);
 
 Route::get('/history', [BankTransferController::class, 'history'])->name('transfer.history')->middleware(['auth', 'role:client']);
