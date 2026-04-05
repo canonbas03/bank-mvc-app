@@ -29,7 +29,7 @@
                 <td>{{ $client->user->email }}</td>
                 <td>{{ $client->user->role }}</td>
                 <td>{{ $client->clientEgn }}</td>
-                <td class="">
+                <td>
                     <div class="d-flex justify-content-center gap-2">
                         <a href="{{ route('clients.show', $client->id) }}" class="btn btn-sm btn-primary">Show</a>
                         <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-sm btn-warning">Edit</a>
