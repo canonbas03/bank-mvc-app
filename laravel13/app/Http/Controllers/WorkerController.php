@@ -106,6 +106,10 @@ class WorkerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $worker = Worker::findOrFail($id);
+
+        $worker->user->delete();
+
+        return redirect()->route('workers.index')->with('success', 'Worker data is successfully deleted');
     }
 }

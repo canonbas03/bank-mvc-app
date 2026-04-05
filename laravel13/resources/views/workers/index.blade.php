@@ -25,10 +25,10 @@
             <td>{{$worker->salary}}</td>
             <td><a href="{{route('workers.edit', $worker->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
-                <form action="{}" method="post">
+                <form action="{{route('workers.destroy', $worker->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this worker: {{$worker->user->firstName}} {{$worker->user->lastName}}?')">Delete</button>
                 </form>
             </td>
         </tr>
