@@ -72,4 +72,7 @@ Route::get('/transfer', [BankTransferController::class, 'create'])->name('transf
 Route::get('/transfer', [BankTransferController::class, 'create'])->name('transfer.create')->middleware(['auth', 'role:client,worker,admin']);
 Route::post('/transfer', [BankTransferController::class, 'store'])->name('transfer.store')->middleware(['auth', 'role:client,worker,admin']);
 
+Route::get('/transfer/client', [BankTransferController::class, 'search'])->name('transfer.search');
+Route::post('/transfer/client', [BankTransferController::class, 'selectClient'])->name('transfer.selectClient');
+
 Route::get('/history', [BankTransferController::class, 'history'])->name('transfer.history')->middleware(['auth', 'role:client']);

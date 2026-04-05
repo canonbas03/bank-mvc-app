@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\BankAccount;
 use App\Models\Transaction;
+use App\Models\Client;
 
 class BankTransferController extends Controller
 {
@@ -14,6 +15,22 @@ class BankTransferController extends Controller
     {
         $client = auth()->user()->client;
         return view('transfers.create', compact("client"));
+    }
+
+    public function search()
+    {
+        return view('transfers.search_client');
+    }
+
+    public function selectClient(Request $request)
+    {
+        $request->validate([
+            'client_egn' => 'required|exists:clients,clientEgn'
+        ]);
+
+        $client = Client::where('clientEgn', $request->client_egn)->firstOrFail();
+
+        return view('transfers.create', compact('client'));
     }
 
     public function store(Request $request)
