@@ -46,12 +46,19 @@
                                 class="form-control" required>
                         </div>
 
+                        <div class="mb-4">
+                            <label class="form-label">EGN</label>
+                            <input type="text" name="clientEgn"
+                                class="form-control" required>
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" name="email"
                                 value="{{ old('email') }}"
                                 class="form-control" required>
                         </div>
+
 
                         <div class="mb-3">
                             <label class="form-label">Password</label>
@@ -65,11 +72,6 @@
                                 class="form-control" required>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label">EGN</label>
-                            <input type="text" name="clientEgn"
-                                class="form-control" required>
-                        </div>
 
                         <button type="submit" class="btn btn-success w-100">
                             Create Client
