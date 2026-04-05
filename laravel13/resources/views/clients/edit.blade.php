@@ -1,69 +1,89 @@
 @extends('layouts.app')
+
 @section('content')
-<style>
-    .uper {
-        margin-top: 40px;
-    }
-</style>
-<div class="card uper">
-    <div class="card-header">
-        Edit Client Data
-    </div>
-    <div class="card-body">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div><br />
-        @endif
-        <form action="{{ route('clients.update', $client->id) }}" method="POST">
-            @csrf
-            @method('PATCH')
-            <h2>Edit Client</h2>
 
-            <label for="firstName">First Name:</label>
-            <input
-                type="text"
-                name="firstName"
-                value="{{ $client->user->firstName}}"
-                required>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-            <label for="lastName">Last Name:</label>
-            <input
-                type="text"
-                name="lastName"
-                value="{{ $client->user->lastName}}"
-                required>
+            <a href="{{ url()->previous() }}" class="btn btn-outline-secondary mb-3">
+                ←
+            </a>
 
-            <label for="email">Email:</label>
-            <input
-                type="email"
-                name="email"
-                value="{{ $client->user->email}}"
-                required>
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    Edit Client Data
+                </div>
 
-            <label for="clientEgn">EGN:</label>
-            <input
-                type="text"
-                name="clientEgn"
-                value="{{ $client->clientEgn}}"
-                required>
+                <div class="card-body">
 
-            <button type="submit" class="btn mt-4">Edit</button>
+                    <h4 class="mb-3">Edit Client</h4>
 
-            <!-- validation errors -->
-            @if ($errors->any())
-            <ul class="px-4 py-2 bg-red-100">
-                @foreach ($errors->all() as $error)
-                <li class="my-2 text-red-500">{{ $error }}</li>
-                @endforeach
-            </ul>
-            @endif
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
 
-        </form>
+                    <form action="{{ route('clients.update', $client->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            <input
+                                type="text"
+                                name="firstName"
+                                value="{{ $client->user->firstName }}"
+                                class="form-control"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input
+                                type="text"
+                                name="lastName"
+                                value="{{ $client->user->lastName }}"
+                                class="form-control"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value="{{ $client->user->email }}"
+                                class="form-control"
+                                required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">EGN</label>
+                            <input
+                                type="text"
+                                name="clientEgn"
+                                value="{{ $client->clientEgn }}"
+                                class="form-control"
+                                required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Update Client
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
+
 @endsection
