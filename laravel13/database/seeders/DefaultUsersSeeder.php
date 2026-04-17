@@ -35,7 +35,7 @@ class DefaultUsersSeeder extends Seeder
             'role'      => 'worker'
         ]);
 
-        // WORKER PROFILE (salary in workers table)
+        // WORKER PROFILE
         Worker::create([
             'user_id' => $workerUser->id,
             'salary'  => 1500
@@ -50,7 +50,7 @@ class DefaultUsersSeeder extends Seeder
             'role'      => 'client'
         ]);
 
-        // CLIENT PROFILE (EGN and bank account)
+        // CLIENT PROFILE
         $client = Client::create([
             'user_id' => $clientUser->id,
             'clientEgn' => '0102030405',
