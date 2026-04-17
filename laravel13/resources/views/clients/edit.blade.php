@@ -73,7 +73,7 @@
                                 required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">
+                        <button type="submit" class="btn btn-primary w-100" onclick="return confirm('Are you sure you want to update this client: {{ $client->user->firstName }} {{ $client->user->lastName }}?')">
                             Update Client
                         </button>
 

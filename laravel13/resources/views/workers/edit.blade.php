@@ -61,7 +61,7 @@
                                 class="form-control" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">
+                        <button type="submit" class="btn btn-primary w-100" onclick="return confirm('Are you sure you want to update this worker: {{ $worker->user->firstName }} {{ $worker->user->lastName }}?')">
                             Update Worker
                         </button>
                     </form>

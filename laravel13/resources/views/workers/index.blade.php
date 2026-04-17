@@ -49,6 +49,8 @@
             @endforelse
         </tbody>
     </table>
+
+    {{ $workers->links() }}
 </div>
 
 @endsection
